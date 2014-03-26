@@ -10,7 +10,10 @@ import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.trans.Trans;
+import org.pentaho.di.trans.TransListener;
 import org.pentaho.di.trans.TransMeta;
+import org.pentaho.di.trans.step.RunThread;
+import org.pentaho.di.trans.step.StepMetaDataCombi;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -179,4 +182,57 @@ combi.stepname = stepMeta.getName();
 		在step初始化时，会把Trans中的List<RowSet>的相应的rowset加入到step的inputRowSets，和outputRowSets中。
 		combi.step = step;
 		steps.add(combi);
+		
+----->在steps准备好之后，
+if (trans.isReadyToStart()) {
+    checkStartThreads();// After init, launch the threads.
+    
+最后调用 trans.startThreads();
+private synchronized void startThreads() {
+    running = true;
+    try {
+      // Add a listener to the transformation.
+      // If the transformation is done, we want to do the end processing, etc.
+      //
+      trans.addTransListener(new TransListener() {
+
+        public void transFinished(Trans trans) {
+          checkTransEnded();
+          checkErrorVisuals();
+        }
+      });
+
+      trans.startThreads();
+    ...
+    ...
+    
+----->trans.startThreads()
+switch(transMeta.getTransformationType()) {
+case Normal:
+	
+    // Now start all the threads...
+	//
+    for (int i=0;i<steps.size();i++)
+    {
+    	StepMetaDataCombi combi = steps.get(i);
+    	RunThread runThread = new RunThread(combi);
+    	Thread thread = new Thread(runThread);
+    	thread.setName(getName()+" - "+combi.stepname);
+    	thread.start();
+    }
+    break;
+    
+---------> thread的run方法
+public void run() {
+	try
+	{
+		step.setRunning(true);
+		if (log.isDetailed()) log.logDetailed(BaseMessages.getString(PKG, "System.Log.StartingToRun")); //$NON-NLS-1$
+		
+		while (step.processRow(meta, data) && !step.isStopped());
+		
+=======>基类BaseStep采取了统一的处理方式，调用子类processRow以行为单位处理，核心代码如下。
+while (stepInterface.processRow(meta, data) && !stepInterface.isStopped());
+processRow( )通用过程是：调用基类BaseStep 的getRow( )得到数据，对一行数据处理，处理之后调用基类putRow( )方法数据保存至outputRowSets（即next step的inputRowSets）
+
 

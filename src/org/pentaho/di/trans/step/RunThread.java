@@ -36,7 +36,7 @@ public class RunThread implements Runnable {
 		{
 			step.setRunning(true);
 			if (log.isDetailed()) log.logDetailed(BaseMessages.getString(PKG, "System.Log.StartingToRun")); //$NON-NLS-1$
-			//在此调用具体的一个step的processRow方法！<<hcy
+			
 			while (step.processRow(meta, data) && !step.isStopped());
 		}
 		catch(Throwable t)

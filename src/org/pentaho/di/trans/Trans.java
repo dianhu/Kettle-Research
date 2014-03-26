@@ -459,7 +459,7 @@ public class Trans implements VariableSpace, NamedParams, HasLogChannelInterface
                 int nrCopies;
                 if(log.isDetailed()) 
                 	log.logDetailed(BaseMessages.getString(PKG, "Trans.Log.copiesInfo",String.valueOf(thisCopies),String.valueOf(nextCopies))); //$NON-NLS-1$ //$NON-NLS-2$
-				int dispatchType;//copies这里没有看懂！<==Hcy
+				int dispatchType;//copies是step的属性“Change number of copies to start...”<==Hcy
 				     if (thisCopies==1 && nextCopies==1) { dispatchType=TYPE_DISP_1_1; nrCopies = 1; }
 				else if (thisCopies==1 && nextCopies >1) { dispatchType=TYPE_DISP_1_N; nrCopies = nextCopies; }
 				else if (thisCopies >1 && nextCopies==1) { dispatchType=TYPE_DISP_N_1; nrCopies = thisCopies; }
@@ -486,7 +486,7 @@ public class Trans implements VariableSpace, NamedParams, HasLogChannelInterface
     					case TYPE_DISP_N_1: rowSet.setThreadNameFromToCopy(thisStep.getName(), c, nextStep.getName(), 0); break;
     					case TYPE_DISP_N_N: rowSet.setThreadNameFromToCopy(thisStep.getName(), c, nextStep.getName(), c); break;
                         }
-    					rowsets.add(rowSet);
+    					rowsets.add(rowSet);//每一个hop连接的steps之间便有一个rowSet<==Hcy
     					if (log.isDetailed()) log.logDetailed(BaseMessages.getString(PKG, "Trans.TransformationAllocatedNewRowset",rowSet.toString())); //$NON-NLS-1$ //$NON-NLS-2$
     				}
                 }
@@ -533,7 +533,7 @@ public class Trans implements VariableSpace, NamedParams, HasLogChannelInterface
 				// Make sure we haven't started it yet!
 				if (!hasStepStarted(stepMeta.getName(), c))
 				{
-					StepMetaDataCombi combi = new StepMetaDataCombi();
+					StepMetaDataCombi combi = new StepMetaDataCombi();//To Know:Step 的Data包含些什么？<==Hcy
 
 					combi.stepname = stepMeta.getName();
 					combi.copy     = c;
