@@ -166,7 +166,7 @@ public class AggregateRows extends BaseStep implements StepInterface
 			Object[] agg = buildAggregate(); // build a resume
 			putRow(data.outputRowMeta, agg);
 			setOutputDone();
-			return false;
+			return false;  
 		}
 		
 		if (first)
