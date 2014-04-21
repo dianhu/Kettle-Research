@@ -2242,7 +2242,7 @@ public class Trans implements VariableSpace, NamedParams, HasLogChannelInterface
         }
 
         // We are going to add an extra RowSet to this stepInterface.
-        BlockingRowSet rowSet = new BlockingRowSet(transMeta.getSizeRowset());
+        BlockingRowSet rowSet = new BlockingRowSet(transMeta.getSizeRowset());//hcy=>set the queue size by the trans meta setting "Nr of rows in rowset"
 
         // Add this rowset to the list of active rowsets for the selected step
         stepInterface.getInputRowSets().add(rowSet);
