@@ -1,0 +1,2 @@
+从RowSet中get的每一条数据都会去执行databasejoin中的sql查询，然后把查询结果的rowmeta和
+row data增加到现用行中
