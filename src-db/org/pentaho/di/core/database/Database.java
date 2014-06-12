@@ -2860,7 +2860,7 @@ public class Database implements VariableSpace, LoggingObjectInterface
 
 		for (int i=0;i<codes.length;i++)
 		{
-			if (i!=0) sql += " AND ";
+			if (i!=0) sql += " AND ";//look up logic is always 'and' don't support 'or' --hcy
 			sql += databaseMeta.quoteField(codes[i]);
 			if ("BETWEEN".equalsIgnoreCase(condition[i]))
 			{

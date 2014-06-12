@@ -501,6 +501,46 @@ public class CombinationLookup extends BaseStep implements StepInterface
     /**
      * This inserts new record into a junk dimension
      */
+    /**
+     * @param rowMeta
+     * @param row
+     * @param val_key
+     * @param val_crc
+     * @return
+     * @throws KettleDatabaseException
+     */
+    /**
+     * @param rowMeta
+     * @param row
+     * @param val_key
+     * @param val_crc
+     * @return
+     * @throws KettleDatabaseException
+     */
+    /**
+     * @param rowMeta
+     * @param row
+     * @param val_key
+     * @param val_crc
+     * @return
+     * @throws KettleDatabaseException
+     */
+    /**
+     * @param rowMeta
+     * @param row
+     * @param val_key
+     * @param val_crc
+     * @return
+     * @throws KettleDatabaseException
+     */
+    /**
+     * @param rowMeta
+     * @param row
+     * @param val_key
+     * @param val_crc
+     * @return
+     * @throws KettleDatabaseException
+     */
     public Long combiInsert( RowMetaInterface rowMeta, Object[] row, Long val_key, Long val_crc ) throws KettleDatabaseException
     {
         String debug="Combination insert";

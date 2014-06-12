@@ -367,7 +367,7 @@ public class DatabaseLookup extends BaseStep implements StepInterface
                     data.look=new Hashtable<RowMetaAndData, TimedRow>();
                 }
             }
-
+            //create sql --hcy
             data.db.setLookup(environmentSubstitute(meta.getSchemaName()), 
             		          environmentSubstitute(meta.getTablename()), meta.getTableKeyField(), meta.getKeyCondition(), meta.getReturnValueField(), meta.getReturnValueNewName(), meta.getOrderByClause(), meta.isFailingOnMultipleResults());
 
