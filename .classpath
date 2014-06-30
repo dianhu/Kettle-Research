@@ -5,7 +5,7 @@
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="src" output="classes-core" path="src-core"/>
 	<classpathentry kind="src" output="classes-db" path="src-db"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre8"/>
 	<classpathentry exported="true" kind="lib" path="libext/js.jar" sourcepath="C:/hcy/software/eclipse/plugins/org.mozilla.javascript.source_1.7.2.v201005080400.jar"/>
 	<classpathentry exported="true" kind="lib" path="libext/mail.jar"/>
 	<classpathentry exported="true" kind="lib" path="libext/javadbf.jar" sourcepath="/javadbf/javadbf"/>
