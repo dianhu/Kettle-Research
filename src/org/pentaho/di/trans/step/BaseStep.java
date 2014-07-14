@@ -1030,7 +1030,7 @@ public class BaseStep implements VariableSpace, StepInterface, LoggingObjectInte
 	    }
 	    
         // call all row listeners...
-        //
+        // spoon监视器下运行的方法
 	    synchronized (this) {
 	        for (int i = 0; i < rowListeners.size(); i++)
 	        {
